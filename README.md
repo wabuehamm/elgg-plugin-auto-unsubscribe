@@ -10,3 +10,11 @@ This plugin enhances the [content subscriptions](https://github.com/ColdTrick/co
 # Installation
 
 Download a release and unzip the file into the mods directory of Elgg.
+
+# Development
+
+## Release
+
+Run the following command to release a new version to GitHub
+
+    GITHUB_TOKEN=<my token> grunt release:<new release number>

@@ -1,5 +1,7 @@
 .idea
 *.iml
+releases
+build
 ### Node template
 # Logs
 logs
