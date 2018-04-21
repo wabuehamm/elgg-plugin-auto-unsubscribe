@@ -3,8 +3,8 @@
 function auto_unsubscribe_init()
 {
     // Add subscription setting
-    elgg_extend_view('forms/notifications/settings/digest', 'forms/notifications/settings/digest_subscriptions');
-    elgg_register_plugin_hook_handler('action', 'notifications/settings/digest', 'auto_unsubscribe_save_subscription_setting');
+    elgg_extend_view('notifications/subscriptions/personal', 'notifications/subscriptions/personal_subscriptions');
+    elgg_register_plugin_hook_handler('action', 'notificationsettings/save', 'auto_unsubscribe_save_subscription_setting');
 
     // Subscribe for comments and likes
     elgg_register_event_handler('create', 'object', 'auto_unsubscribe_subscription_subscribe_comment', 400);
@@ -13,6 +13,15 @@ function auto_unsubscribe_init()
     // Remove subscriptions for discussions after the first notifications
     elgg_register_plugin_hook_handler('send:after', 'notifications', 'auto_unsubscribe_unsubscribe_after_notification');
 
+}
+
+/**
+ * Store the subscription setting
+ */
+function auto_unsubscribe_save_subscription_setting($hook, $type, $return, $params)
+{
+    elgg_set_plugin_user_setting('subscription', get_input('auto_unsubscribe_subscription'), 0, 'auto_unsubscribe');
+    return true;
 }
 
 /**
@@ -31,15 +40,6 @@ function auto_unsubscribe_subscription_subscribe_like($event, $type, $annotation
     if ($annotation instanceof \ElggAnnotation && $annotation->name == 'likes') {
         content_subscriptions_subscribe($annotation->getEntity()->guid, elgg_get_logged_in_user_guid());
     }
-}
-
-/**
- * Store the subscription setting
- */
-function auto_unsubscribe_save_subscription_setting($hook, $type, $return, $params)
-{
-    elgg_set_plugin_user_setting('subscription', get_input('auto_unsubscribe_subscription'), 0, 'auto:_unsubscribe');
-    return true;
 }
 
 /**
