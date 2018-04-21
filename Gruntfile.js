@@ -38,6 +38,7 @@ module.exports = function (grunt) {
 					'!package.json',
 					'!phpunit.xml',
 					'!Gruntfile.js',
+					'!*.iml'
 				],
 				dest: 'build/',
 				expand: true
