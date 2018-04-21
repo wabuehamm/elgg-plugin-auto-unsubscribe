@@ -52,7 +52,7 @@ function auto_unsubscribe_unsubscribe_after_notification($hook, $type, $return, 
     if (elgg_instanceof($params['event']->getObject(), 'object', 'discussion')) {
         foreach ($params['subscriptions'] as $guid => $methods) {
             if ($guid != $params['event']->getObject()->getOwnerGUID()) {
-                if (elgg_get_plugin_user_setting('subscription', $guid, 'auto_unsubscribe') != 'all') {
+                if (elgg_get_plugin_user_setting('subscription', $guid, 'auto_unsubscribe') != 'subscribed') {
                     content_subscriptions_unsubscribe(
                         $params['event']->getObject()->getGUID(),
                         $guid

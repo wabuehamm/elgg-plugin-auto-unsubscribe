@@ -2,8 +2,9 @@
 
 return [
 
-    'auto_unsubscribe:notification:subscription' => 'Benachrichtigungen bei Antworten auf...',
-    'auto_unsubscribe:notification:subscription:all' => 'Alle Forumsbeiträge',
-    'auto_unsubscribe:notification:subscription:specific' => 'Nur Beiträge, die ich kommentiert, geliked oder direkt abonniere habe',
+    'auto_unsubscribe:notification:subscription' => 'Standardeinstellung für neue Forumsbeiträge',
+    'auto_unsubscribe:notification:subscription:help' => 'Wird gesetzt, NACHDEM die erste Benachrichtigung versendet wird',
+    'auto_unsubscribe:notification:subscription:subscribed' => 'Abonniert',
+    'auto_unsubscribe:notification:subscription:unsubscribed' => 'Abbestellt',
 
 ];

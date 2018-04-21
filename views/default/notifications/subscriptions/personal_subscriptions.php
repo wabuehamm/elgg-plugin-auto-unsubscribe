@@ -7,10 +7,11 @@ $value = elgg_get_plugin_user_setting('subscription', $user->guid, 'auto_unsubsc
 echo elgg_view_field([
     '#type' => 'select',
     '#label' => elgg_echo("auto_unsubscribe:notification:subscription"),
+    '#help' => elgg_view_icon('help') . elgg_echo('auto_unsubscribe:notification:subscription:help'),
     'name' => 'auto_unsubscribe_subscription',
     'value' => $value,
     'options_values' => [
-        'all' => elgg_echo('auto_unsubscribe:notification:subscription:all'),
-        'specific' => elgg_echo('auto_unsubscribe:notification:subscription:specific')
+        'subscribed' => elgg_echo('auto_unsubscribe:notification:subscription:subscribed'),
+        'unsubscribed' => elgg_echo('auto_unsubscribe:notification:subscription:unsubscribed')
     ]
 ]);
