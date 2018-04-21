@@ -5,7 +5,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:wabuehamm/elgg-plugin-auto-unsubscribe.git",
-		"owner": "wabuehmann",
+		"owner": "wabuehamm",
 		"repo": "elgg-plugin-auto-unsubscribe"
 	},
 	"devDependencies": {
