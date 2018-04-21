@@ -20,7 +20,7 @@ function auto_unsubscribe_init()
  */
 function auto_unsubscribe_save_subscription_setting($hook, $type, $return, $params)
 {
-    elgg_set_plugin_user_setting('subscription', get_input('auto_unsubscribe_subscription'), 0, 'auto_unsubscribe');
+    elgg_set_plugin_user_setting('subscription', get_input('auto_unsubscribe_subscription'), get_input('guid'), 'auto_unsubscribe');
     return true;
 }
 
@@ -52,7 +52,7 @@ function auto_unsubscribe_unsubscribe_after_notification($hook, $type, $return, 
     if (elgg_instanceof($params['event']->getObject(), 'object', 'discussion')) {
         foreach ($params['subscriptions'] as $guid => $methods) {
             if ($guid != $params['event']->getObject()->getOwnerGUID()) {
-                if (elgg_get_plugin_user_setting('subscription', $guid) != 'all') {
+                if (elgg_get_plugin_user_setting('subscription', $guid, 'auto_unsubscribe') != 'all') {
                     content_subscriptions_unsubscribe(
                         $params['event']->getObject()->getGUID(),
                         $guid
