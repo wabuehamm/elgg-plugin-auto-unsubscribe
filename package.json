@@ -1,0 +1,22 @@
+{
+	"name": "auto_unsubscribe",
+	"version": "0.0.1",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:wabuehamm/elgg-plugin-auto-unsubscribe.git",
+		"owner": "wabuehmann",
+		"repo": "elgg-plugin-auto-unsubscribe"
+	},
+	"devDependencies": {
+		"curlrequest": "^0.3.10",
+		"grunt": "^0.4.5",
+		"grunt-contrib-clean": "^0.6.0",
+		"grunt-contrib-compress": "^0.13.0",
+		"grunt-contrib-copy": "^0.8.0",
+		"grunt-conventional-changelog": "^5.0.0",
+		"grunt-gh-release": "0.0.2",
+		"grunt-git": "^0.3.5",
+		"grunt-version": "^1.0.0",
+	}
+}
