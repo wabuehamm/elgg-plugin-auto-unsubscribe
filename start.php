@@ -3,7 +3,7 @@
 function auto_unsubscribe_init()
 {
     // Add subscription setting
-    elgg_extend_view('notifications/subscriptions/personal', 'notifications/subscriptions/personal_subscriptions');
+    elgg_extend_view('notifications/settings/other', 'notifications/subscriptions/personal_subscriptions');
     elgg_register_plugin_hook_handler('action', 'notificationsettings/save', 'auto_unsubscribe_save_subscription_setting');
 
     // Subscribe for comments and likes
