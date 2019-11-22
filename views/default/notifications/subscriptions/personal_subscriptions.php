@@ -2,7 +2,7 @@
 
 $user = elgg_extract('user', $vars);
 
-$value = elgg_get_plugin_user_setting('subscription', $user->guid, 'auto_unsubscribe', 'specific');
+$value = elgg_get_plugin_user_setting('subscription', $user->guid, 'auto_unsubscribe', 'unsubscribed');
 
 echo elgg_view_field([
     '#type' => 'select',
