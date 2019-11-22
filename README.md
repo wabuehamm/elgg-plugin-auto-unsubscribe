@@ -4,7 +4,7 @@ This plugin enhances the [content subscriptions](https://github.com/ColdTrick/co
 
 # Requirements
 
-* Elgg 2.3
+* Elgg >=3.0
 * Content subscriptions 5.1.1
 
 # Installation
