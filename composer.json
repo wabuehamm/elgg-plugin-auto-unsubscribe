@@ -1,0 +1,20 @@
+{
+  "name": "wabuehamm/auto_unsubscribe",
+  "description": "Automatically unsubscribes all users from a discussion topic after the first notification.",
+  "type": "elgg-plugin",
+  "keywords": [
+    "elgg",
+    "plugin"
+  ],
+  "license": "MIT",
+  "support": {
+    "source": "https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe",
+    "issues": "https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/issues"
+  },
+  "require": {
+    "composer/installers": "^1.0.8"
+  },
+  "conflict": {
+    "elgg/elgg": "<3.0"
+  }
+}
