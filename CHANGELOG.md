@@ -1,3 +1,17 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/compare/2.0.0...v2.0.1) (2020-04-11)
+
+
+### Bug Fixes
+
+* Fixes and optimizations for Elgg >3 ([6c2976c](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/commit/6c2976c))
+
+### Features
+
+* Added composer file ([144dd5f](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/commit/144dd5f))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/compare/1.0.1...v2.0.0) (2019-11-22)
 
