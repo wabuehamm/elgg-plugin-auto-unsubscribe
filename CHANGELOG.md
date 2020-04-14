@@ -1,3 +1,13 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/compare/2.0.1...v2.0.2) (2020-04-14)
+
+
+### Bug Fixes
+
+* Wrong action hook to save settings ([c767b37](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/commit/c767b37))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/compare/2.0.0...v2.0.1) (2020-04-11)
 
