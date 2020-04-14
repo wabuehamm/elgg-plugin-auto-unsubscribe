@@ -62,7 +62,7 @@ class Bootstrap extends DefaultPluginBootstrap
     private function registerHandlers()
     {
         // Store plugin user setting
-        elgg_register_plugin_hook_handler('action', 'notificationsettings/save', [$this, 'saveSubscriptionSetting']);
+        elgg_register_plugin_hook_handler('action:validate', 'notifications/settings', [$this, 'saveSubscriptionSetting']);
 
         // Subscribe for comments and likes
         elgg_register_event_handler('create', 'object', [$this, 'subscribeToComments'], 400);
