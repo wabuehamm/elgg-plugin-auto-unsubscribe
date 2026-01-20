@@ -1,6 +1,6 @@
 <?php
 
-$user = elgg_extract('user', $vars);
+$user = elgg_extract('entity', $vars);
 
 $value = elgg_get_plugin_user_setting('subscription', $user->guid, 'auto_unsubscribe', 'unsubscribed');
 

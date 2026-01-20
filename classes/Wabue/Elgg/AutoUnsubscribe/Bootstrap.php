@@ -3,81 +3,73 @@
 namespace Wabue\Elgg\AutoUnsubscribe;
 
 use Elgg\DefaultPluginBootstrap;
+use Elgg\Event;
 use ElggAnnotation;
 use ElggComment;
 use ElggEntity;
-use ElggObject;
 
 class Bootstrap extends DefaultPluginBootstrap
 {
-    private function registerViews()
+    private function registerViews(): void
     {
         // Add subscription setting
-        elgg_extend_view('notifications/settings/other', 'notifications/subscriptions/personal_subscriptions');
+        elgg_extend_view('forms/settings/notifications', 'notifications/subscriptions/personal_subscriptions');
     }
 
-    public function saveSubscriptionSetting()
+    public function saveSubscriptionSetting(): void
     {
-        elgg_set_plugin_user_setting('subscription', get_input('auto_unsubscribe_subscription'), get_input('guid'), 'auto_unsubscribe');
-        return true;
+        /** @var \ElggUser $user */
+        $user = get_entity(get_input('guid'));
+        $user->setPluginSetting('auto_unsubscribe','subscription', get_input('auto_unsubscribe_subscription'));
     }
 
-    public function subscribeToComments($event, $type, ElggObject $object)
+    public function subscribeToComments(Event $event): void
     {
+        $object = $event->getEntityParam();
         if ($object instanceof ElggComment) {
-            /** @noinspection PhpUndefinedFunctionInspection */
-            content_subscriptions_subscribe($object->container_guid, elgg_get_logged_in_user_guid());
+            $object->addSubscription(elgg_get_logged_in_user_guid());
         }
     }
 
-    public function subscribeToLikes($event, $type, ElggAnnotation $object)
+    public function subscribeToLikes(Event $event): void
     {
+        $object = $event->getEntityParam();
         if ($object instanceof ElggAnnotation && $object->name == 'likes') {
-            /** @noinspection PhpUndefinedFunctionInspection */
-            content_subscriptions_subscribe($object->getEntity()->guid, elgg_get_logged_in_user_guid());
+            $object->getEntity()->removeSubscription(elgg_get_logged_in_user_guid());
         }
     }
 
-    public function removeSubscriptionAfterCreate($hook, $type, $return, $params)
+    public function removeSubscriptionAfterCreate(Event $event): void
     {
-        /** @var ElggEntity $object */
-        $object = $params['event']->getObject();
+        $object = $event->getParam('event')->getObject();
         if ($object instanceof ElggEntity && $object->getType() == 'object' && $object->getSubType() == 'discussion') {
-            foreach ($params['subscriptions'] as $guid => $methods) {
-                if ($guid != $params['event']->getObject()->getOwnerGUID()) {
+            foreach ($event->getParam('subscriptions') as $guid => $methods) {
+                if ($guid != $object->getOwnerGUID()) {
                     if (elgg_get_plugin_user_setting('subscription', $guid, 'auto_unsubscribe') != 'subscribed') {
-                        /** @noinspection PhpUndefinedFunctionInspection */
-                        content_subscriptions_unsubscribe(
-                            $params['event']->getObject()->getGUID(),
-                            $guid
-                        );
+                        $object->muteNotifications($guid);
                     }
                 }
             }
         }
-
-        return $return;
     }
 
-    private function registerHandlers()
+    private function registerHandlers(): void
     {
         // Store plugin user setting
-        elgg_register_plugin_hook_handler('action:validate', 'notifications/settings', [$this, 'saveSubscriptionSetting']);
+        elgg_register_event_handler('action:validate', 'notifications/settings', [$this, 'saveSubscriptionSetting']);
 
         // Subscribe for comments and likes
         elgg_register_event_handler('create', 'object', [$this, 'subscribeToComments'], 400);
         elgg_register_event_handler('create', 'annotation', [$this, 'subscribeToLikes'], 400);
 
         // Remove subscriptions for discussions after the first notifications
-        elgg_register_plugin_hook_handler('send:after', 'notifications', [$this, 'removeSubscriptionAfterCreate']);
+        elgg_register_event_handler('send:after', 'notifications', [$this, 'removeSubscriptionAfterCreate']);
     }
 
-    public function boot()
+    public function init(): void
     {
-        if (elgg_is_active_plugin('content_subscriptions')) {
-            $this->registerViews();
-            $this->registerHandlers();
-        }
+        $this->registerViews();
+        $this->registerHandlers();
     }
 
 }
