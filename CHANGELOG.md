@@ -1,3 +1,18 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/compare/2.0.2...v3.0.0) (2026-09-19)
+
+
+### Features
+
+* Modifications to work with Elgg 6 ([f903342](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/commit/f903342))
+
+
+### BREAKING CHANGES
+
+* Doesn't work for Elgg versions below 6
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/wabuehamm/elgg-plugin-auto-unsubscribe/compare/2.0.2...v2.0.3) (2026-08-21)
 
